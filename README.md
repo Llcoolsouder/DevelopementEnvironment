@@ -1,4 +1,4 @@
-# Developement Environment
+# Development Environment
 This is just a docker container that contains all of the resources and tools that I like to use.
 
 ## Why?
