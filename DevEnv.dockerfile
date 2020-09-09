@@ -1,6 +1,8 @@
 FROM ubuntu:latest
 LABEL Author="Lonnie L. Souder II"
 
+ARG USER_ID
+ARG GROUP_ID
 ARG USERNAME=lsouder
 
 ENV TZ=US/Eastern
@@ -10,7 +12,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y sudo && \
-    useradd --create-home --shell /bin/bash $USERNAME && \
+    addgroup --gid $GROUP_ID $USERNAME && \
+    useradd --create-home --shell /bin/bash --uid $USER_ID --gid $GROUP_ID $USERNAME && \
     usermod -aG sudo $USERNAME && \
     echo "$USERNAME ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/$USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME && \
@@ -42,4 +45,4 @@ RUN wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor 
     sudo rm packages.microsoft.gpg && \
     code --version
 
-CMD bash
+CMD bash#
