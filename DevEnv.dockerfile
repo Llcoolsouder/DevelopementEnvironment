@@ -13,9 +13,8 @@ RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y sudo && \
     addgroup --gid $GROUP_ID $USERNAME && \
-    useradd --create-home --shell /bin/bash --uid $USER_ID --gid $GROUP_ID $USERNAME && \
-    usermod -aG sudo $USERNAME && \
-    echo "$USERNAME ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/$USERNAME && \
+    useradd --uid $USER_ID --gid $GROUP_ID --create-home $USERNAME && \
+    echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USERNAME && \
     chmod 0440 /etc/sudoers.d/$USERNAME && \
     su - $USERNAME -c "touch mine" && \
     ls -lh /home/$USERNAME
