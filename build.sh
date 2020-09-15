@@ -1,1 +1,1 @@
-docker build -t dev-env:latest --no-cache -f DevEnv.dockerfile .
+docker build -t dev-env:latest -f DevEnv.dockerfile .
