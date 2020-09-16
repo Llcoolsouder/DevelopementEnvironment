@@ -13,8 +13,10 @@ script:
 deploy:
   provider: script
   script:
-    - echo "$GH_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin $DOCKER_REGISTRY
-    - docker image ls -a
-    - docker push $IMAGE_NAME
+    - >
+      echo "$GH_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin $DOCKER_REGISTRY &&
+      docker image ls -a &&
+      docker push $IMAGE_NAME &&
+      echo "Push complete!"
   on:
     branch: add-travis-config
