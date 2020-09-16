@@ -1,0 +1,22 @@
+language: minimal
+services:
+  - docker
+
+env:
+  global:
+  - DOCKER_REGISTRY=docker.pkg.github.com/llcoolsouder
+  - IMAGE_NAME=$DOCKER_REGISTRY/developmentenvironment/dev-env:latest
+
+script:
+  - docker build -t $IMAGE_NAME -f DevEnv.dockerfile .
+
+deploy:
+  provider: script
+  script:
+    - >
+      echo "$GH_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin $DOCKER_REGISTRY &&
+      docker image ls -a &&
+      docker push $IMAGE_NAME &&
+      echo "Push complete!"
+  on:
+    branch: master
