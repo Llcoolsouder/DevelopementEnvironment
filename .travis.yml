@@ -17,3 +17,5 @@ deploy:
     - echo "$GH_TOKEN" | docker login https://docker.pkg.github.com/llcoolsouder -u llcoolsouder --password-stdin
     - docker tag $IMAGE_NAME $IMAGE_REPO
     - docker push $IMAGE_REPO
+  on:
+    branches: add-travis-config
