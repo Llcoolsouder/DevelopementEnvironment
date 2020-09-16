@@ -33,4 +33,14 @@ RUN sudo apt-get install -y apt-transport-https ca-certificates gnupg software-p
     sudo apt-get install -y cmake gcc nasm make && \ 
     cmake --version
 
+# Install OpenCV
+RUN wget --no-check-certificate https://github.com/opencv/opencv/archive/3.4.10.tar.gz && \
+    tar -xvf 3.4.10.tar.gz && \
+    cd opencv-3.4.10 && \
+    mkdir build/ && \
+    cd build && \
+    cmake .. && \
+    cmake --build . && \
+    sudo make install
+
 CMD bash
