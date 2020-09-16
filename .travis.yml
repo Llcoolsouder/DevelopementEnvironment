@@ -14,7 +14,7 @@ before_install:
 deploy:
   provider: script
   script:
-    - docker login https://docker.pkg.github.com/llcoolsouder -u llcoolsouder -p "$GH_TOKEN" --password-stdin
+    - docker login https://docker.pkg.github.com/llcoolsouder -u llcoolsouder -p "$GH_TOKEN"
     - docker tag $IMAGE_NAME $IMAGE_REPO
     - docker push $IMAGE_REPO
   on:
