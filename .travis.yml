@@ -18,4 +18,4 @@ deploy:
     - docker tag $IMAGE_NAME $IMAGE_REPO
     - docker push $IMAGE_REPO
   on:
-    branches: add-travis-config
+    branch: add-travis-config
