@@ -19,4 +19,4 @@ deploy:
       docker push $IMAGE_NAME &&
       echo "Push complete!"
   on:
-    branch: add-travis-config
+    branch: master
