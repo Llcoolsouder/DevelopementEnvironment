@@ -33,6 +33,18 @@ RUN sudo apt-get install -y apt-transport-https ca-certificates gnupg software-p
     sudo apt-get install -y cmake gcc nasm make && \ 
     cmake --version
 
+# Install protobuf
+RUN sudo apt-get install -y autoconf automake libtool curl make g++ unzip && \
+    wget --no-check-certificate https://github.com/protocolbuffers/protobuf/releases/download/v3.13.0/protobuf-cpp-3.13.0.tar.gz && \
+    ls -lha && \
+    tar -xvf protobuf-cpp-3.13.0.tar.gz && \
+    cd protobuf-3.13.0 && \
+     ./configure && \
+     make && \
+     make check && \
+     sudo make install && \
+     sudo ldconfig
+
 # Install OpenCV
 RUN wget --no-check-certificate https://github.com/opencv/opencv/archive/3.4.10.tar.gz && \
     tar -xvf 3.4.10.tar.gz && \
